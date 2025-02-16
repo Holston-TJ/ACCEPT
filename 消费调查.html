@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>年消费习惯调查</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        svg {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+        text {
+            font-size: 16px;
+            fill: #333333; /* 问题文字颜色为黑色 */
+        }
+        .question {
+            font-size: 18px;
+            fill: #333333; /* 问题文字颜色为黑色 */
+        }
+        .button {
+            cursor: pointer;
+            fill: #2196F3; /* 按钮颜色为蓝色 */
+            rx: 5px;
+            ry: 5px;
+        }
+        .button:hover {
+            fill: #1e88e5; /* 按钮悬停颜色 */
+        }
+        .selected {
+            fill: #ffffff; /* 选中后按钮变为白色 */
+            stroke: #2196F3; /* 边框保持蓝色 */
+            stroke-width: 2px;
+        }
+        .button-text {
+            fill: #ffffff; /* 按钮文字初始颜色为白色 */
+            pointer-events: none; /* 防止文字遮挡按钮点击 */
+        }
+        .selected-text {
+            fill: #333333; /* 选中后按钮文字变为黑色 */
+        }
+        .hidden {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <svg width="600" height="600" id="survey">
+        <!-- Background -->
+        <rect width="100%" height="100%" fill="#ffffff" rx="15" ry="15"/>
+
+        <!-- Title -->
+        <text x="50%" y="30" text-anchor="middle" class="question">年消费习惯调查</text>
+
+        <!-- Questions -->
+        <g id="question1">
+            <text x="20" y="70" class="question">1. 你每月在餐饮上的花费大约是多少？</text>
+            <rect x="20" y="80" width="100" height="30" class="button" onclick="answer(1, '少于500元', this)"/>
+            <text x="30" y="100" class="button-text">少于500元</text>
+            <rect x="140" y="80" width="100" height="30" class="button" onclick="answer(1, '500-1000元', this)"/>
+            <text x="150" y="100" class="button-text">500-1000元</text>
+            <rect x="260" y="80" width="100" height="30" class="button" onclick="answer(1, '1000元以上', this)"/>
+            <text x="270" y="100" class="button-text">1000元以上</text>
+        </g>
+
+        <g id="question2" class="hidden">
+            <text x="20" y="140" class="question">2. 你每月在购物上的花费大约是多少？</text>
+            <rect x="20" y="150" width="100" height="30" class="button" onclick="answer(2, '少于500元', this)"/>
+            <text x="30" y="170" class="button-text">少于500元</text>
+            <rect x="140" y="150" width="100" height="30" class="button" onclick="answer(2, '500-1000元', this)"/>
+            <text x="150" y="170" class="button-text">500-1000元</text>
+            <rect x="260" y="150" width="100" height="30" class="button" onclick="answer(2, '1000元以上', this)"/>
+            <text x="270" y="170" class="button-text">1000元以上</text>
+        </g>
+
+        <g id="question3" class="hidden">
+            <text x="20" y="210" class="question">3. 你每月在娱乐活动上的花费大约是多少？</text>
+            <rect x="20" y="220" width="100" height="30" class="button" onclick="answer(3, '少于300元', this)"/>
+            <text x="30" y="240" class="button-text">少于300元</text>
+            <rect x="140" y="220" width="100" height="30" class="button" onclick="answer(3, '300-600元', this)"/>
+            <text x="150" y="240" class="button-text">300-600元</text>
+            <rect x="260" y="220" width="100" height="30" class="button" onclick="answer(3, '600元以上', this)"/>
+            <text x="270" y="240" class="button-text">600元以上</text>
+        </g>
+
+        <g id="question4" class="hidden">
+            <text x="20" y="280" class="question">4. 你每月在旅行上的花费大约是多少？</text>
+            <rect x="20" y="290" width="100" height="30" class="button" onclick="answer(4, '少于500元', this)"/>
+            <text x="30" y="310" class="button-text">少于500元</text>
+            <rect x="140" y="290" width="100" height="30" class="button" onclick="answer(4, '500-1000元', this)"/>
+            <text x="150" y="310" class="button-text">500-1000元</text>
+            <rect x="260" y="290" width="100" height="30" class="button" onclick="answer(4, '1000元以上', this)"/>
+            <text x="270" y="310" class="button-text">1000元以上</text>
+        </g>
+
+        <g id="question5" class="hidden">
+            <text x="20" y="350" class="question">5. 你每月在健身和健康上的花费大约是多少？</text>
+            <rect x="20" y="360" width="100" height="30" class="button" onclick="answer(5, '少于200元', this)"/>
+            <text x="30" y="380" class="button-text">少于200元</text>
+            <rect x="140" y="360" width="100" height="30" class="button" onclick="answer(5, '200-500元', this)"/>
+            <text x="150" y="380" class="button-text">200-500元</text>
+            <rect x="260" y="360" width="100" height="30" class="button" onclick="answer(5, '500元以上', this)"/>
+            <text x="270" y="380" class="button-text">500元以上</text>
+        </g>
+    </svg>
+
+    <script>
+        const answers = [];
+        const questions = [
+            "你每月在餐饮上的花费大约是多少？",
+            "你每月在购物上的花费大约是多少？",
+            "你每月在娱乐活动上的花费大约是多少？",
+            "你每月在旅行上的花费大约是多少？",
+            "你每月在健身和健康上的花费大约是多少？"
+        ];
+
+        let currentQuestion = 1;
+
+        function answer(questionIndex, answer, element) {
+            // Reset all buttons for this question
+            const buttons = document.querySelectorAll(`#question${questionIndex} rect`);
+            buttons.forEach(button => {
+                button.classList.remove('selected');
+                button.nextElementSibling.classList.remove('selected-text');
+            });
+
+            // Select the clicked button
+            element.classList.add('selected');
+            element.nextElementSibling.classList.add('selected-text');
+
+            answers[questionIndex - 1] = answer;
+
+            // Show next question
+            if (currentQuestion < questions.length) {
+                document.getElementById(`question${currentQuestion}`).classList.add('hidden');
+                currentQuestion++;
+                document.getElementById(`question${currentQuestion}`).classList.remove('hidden');
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            // Analyze answers
+            const totalSpending = answers.reduce((acc, ans) => {
+                if (ans.includes('少于')) return acc + 300;
+                if (ans.includes('-')) return acc + 750;
+                return acc + 1200;
+            }, 0);
+
+            const spendingHabits = answers.join('\n');
+            const advice = `
+                你的年消费诊断证明单：
+                ${spendingHabits}
+
+                个人消费特征分析：
+                你每年的总消费大约为 ${totalSpending} 元。
+                你在餐饮、购物、娱乐、旅行和健康方面的消费习惯如下：
+                - 餐饮：${answers[0]}
+                - 购物：${answers[1]}
+                - 娱乐：${answers[2]}
+                - 旅行：${answers[3]}
+                - 健康：${answers[4]}
+
+                生活建议：
+                1. 如果你的餐饮和购物花费较高，建议尝试制定预算计划。
+                2. 如果你的娱乐和旅行花费较高，可以考虑寻找更经济的活动。
+                3. 如果你的健康花费较低，建议增加一些健康投资，如健身房会员或健康食品。
+            `;
+
+            // Show result in an alert
+            alert(advice);
+        }
+    </script>
+</body>
+</html>
